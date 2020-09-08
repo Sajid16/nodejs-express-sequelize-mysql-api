@@ -156,3 +156,7 @@ exports.findAllPublished = (req, res) => {
         });
 
 };
+
+
+//add new key and value to an json object
+// req.body['test'] = 'okay';
