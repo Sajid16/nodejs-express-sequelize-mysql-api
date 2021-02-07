@@ -9,10 +9,10 @@ db.sequelize.sync();
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log("Drop and re-sync db.");
 //   });
-  
+
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: ["http://localhost:4200", "http://10.11.201.69:4200"]
 };
 
 app.use(cors(corsOptions));
@@ -21,18 +21,29 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Node.js and sequelize application." });
+  res.json({
+    message: "Welcome to Node.js and sequelize application."
+  });
 });
 
 require("./app/routes/turorial.routes")(app);
 require("./app/routes/test.routes")(app);
 
+// upload file using node and sequilize
+
+let router = require('./app/routes/file.routes');
+app.use('/', router);
+
+// /////////////////////////////////////////////
+
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
