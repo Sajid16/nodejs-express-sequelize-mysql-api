@@ -12,7 +12,7 @@ db.sequelize.sync();
 
 
 var corsOptions = {
-  origin: ["http://localhost:4200", "http://10.11.201.69:4200"]
+  origin: ["http://localhost:4200"]
 };
 
 app.use(cors(corsOptions));
